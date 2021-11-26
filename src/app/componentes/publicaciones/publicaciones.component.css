@@ -1,0 +1,24 @@
+.imagen{
+    background-image: url("https://lh3.googleusercontent.com/Fszs1AAg5Q69Jdbb7CDDYM8u08dcQBTQBGxlOCZ_7qeA7gP6vsSB-MhvvJkztejedJAUXnco8LE3jaodSSeqZ4vg8dZVIjnFnVVT7sCuL2DFm-iM7G-iamCmzDQtpvz6BnCMXaicH7ivNlIMJsLrNmbZd5QgLLh337EZv-aFr7IBBua57SrdNxheuttPWcDp8mmsLqBjeWRtJjgdqAmmvwzZzY8ICW066lTDxKoztbU7z2nCSPpkaRqFa3-j0I4QS7Q1d5YaOBjAXcFpWyKtyWaduFgI2nlUGq3qHsY5H-zZRfnpJ1g6QsXmldNzoXMpqCtwMcDnAsAdTiRbjTZtv6MsSpAg4e4c8VX7gsFEEY_22nhMMYiURi607AnW8rYNWZ1Nz7M0-d-Y68MnZOyJJu-IU8sevqyw_utzY6T1YN-4KLZdVGD12Arm5IthiQQOPyWwkbXfQttdMozs6LdS7bap58qXipsm_fnMs6gLm-jwgO5ARNA5jInVx8w9Qx2ggTyygEO5yTIHjtb-yNizt-tuzUy8QLYB-MHNtu0BSYol5cZlZ583NfLg5I66ed4SS_2nV3Q9V84HQ9W-6GOUryeKGvYbwg_VYMFlmM1Z38dPhxrANFrmaUrBiTsNB1W6aqpRbD_g21wtOj8H14xFkiPTJ7NkI__g99mUlXkg-tbOrKwrdx6isDgXBsXYS2POUdbMxUmi6hbVPRy0FrMcELoMuw=w697-h929-no?authuser=0");
+}
+
+.tarjeta{
+    margin: 4%;
+}
+
+.publicaciones{
+    margin-top: 25%;
+}
+
+.derecha{
+    position: absolute;
+    right: 15px;
+}
+
+.espacio{
+    margin-left: 10px;
+}
+
+.largo{
+    width: 100%;
+}

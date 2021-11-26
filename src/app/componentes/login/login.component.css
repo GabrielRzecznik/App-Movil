@@ -1,0 +1,48 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+mat-card{
+    max-width: 400px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+body{
+    background-color: rgb(233, 233, 233);
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.inputEstilo{
+    width: 150px;
+}
+
+.full-width-input{
+    width: 100%;
+}
+
+.boton{
+    width: 100%;
+}
+
+.delante{
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.colorear{
+    background-color: #0099ff;
+    width: 100%;
+    height: 35%;
+}
+

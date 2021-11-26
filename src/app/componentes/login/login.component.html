@@ -1,0 +1,44 @@
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#0099ff" fill-opacity="1" d="M0,128L60,117.3C120,107,240,85,360,112C480,139,600,213,720,234.7C840,256,960,224,1080,202.7C1200,181,1320,171,1380,165.3L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+</svg>
+<!--LOGIN-->
+<form [formGroup]="formularioLogin" (ngSubmit)="Loguear()">
+  <div class="delante">
+    <mat-card class="example-card">
+      <mat-card-subtitle class="colorPrimary">Rz Automoviles</mat-card-subtitle>
+      <mat-card-title>Inicio de Sesión</mat-card-title>
+      <mat-card-content>
+      <br>
+      <!--Correo-->
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Correo</mat-label>
+        <input matInput placeholder="correo@gmail.com" formControlName="correo" name="correo" id="correo" required>
+        <mat-error *ngIf="correo.invalid">{{getErrorMessageCorreo()}}</mat-error>
+        <span mat-icon-button matSuffix>
+          <mat-icon>email</mat-icon>
+        </span>
+      </mat-form-field>
+      <!--Contraseña-->
+      <mat-form-field class="full-width-input" appearance="outline">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password" id="password" required>
+        <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      </mat-card-content>
+        <mat-card-actions>
+          <!--Boton Iniciar Sesión-->
+          <button mat-raised-button color="primary" type="submit" class="btn btn-warning" name="botonLogin" id="botonLogin" (click)="enviar()" [disabled]="formularioLogin.invalid">Iniciar Sesión</button>
+          <!--Boton Registrarse-->
+          <button mat-button target="_blank" class="btn btn-secondary" type="button" (click)=registro()>Registrarse</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar *ngIf="visible as value" mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+  </div>
+</form>
+</body>

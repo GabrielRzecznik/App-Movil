@@ -1,18 +1,36 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './componentes/login/login.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { PublicacionesComponent } from './componentes/publicaciones/publicaciones.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ErrorRutaComponent } from './componentes/error-ruta/error-ruta.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegistroComponent,
+    PublicacionesComponent,
+    ErrorRutaComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ HttpClient ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
