@@ -1,22 +1,30 @@
 //Conectar Server
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+  @Output() recargarPagina:EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private activateRouter:ActivatedRoute) {
+    
   }
+
+  verificarLogin(){
+    return this.activateRouter.url;
+  }
+
   traerValor() {
     return this.http.get('https://parcial-edi-backend.herokuapp.com/Automoviles/listaAutomovil');
   }
 
   PublicarAutomovil(patente: string, marca: string, modelo: string, version: string, color: string, estado: string, cambio: string, combustible: string, valor: number, kilometraje: number, anio: number) {
-    const body = { patente, marca, modelo, version, color, estado, cambio, combustible, valor, kilometraje, anio, propietario:"gabriel@gmail.com" };
+    const body = { patente, marca, modelo, version, color, estado, cambio, combustible, valor, kilometraje, anio, propietario:JSON.parse(localStorage.getItem('usuario')!).correo};
     return this.http.post('https://parcial-edi-backend.herokuapp.com/Automoviles/publicarAutomovil', body);
   }
 
@@ -32,7 +40,7 @@ export class ApiService {
 
   BuscarUsuario(correo: string, contraseña: string) {
     const body = {correo, contraseña};
-    return this.http.post('https://parcial-edi-backend.herokuapp.com/Usuarios/buscarUsuario', body);
+    return this.http.post('https://parcial-edi-backend.herokuapp.com/Usuarios/buscarUsuario', body).pipe(map((usuario:any)=>usuario[0]))
   }
 
   traerValoresPost(): Observable<any> {

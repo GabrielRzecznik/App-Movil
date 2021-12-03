@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   visible = false;
   
   constructor(private api:ApiService, private router: Router, private fb:FormBuilder) {
-    if (sessionStorage.getItem('token')=='válido') {
+    if (sessionStorage.getItem('token')==='válido') {
       this.router.navigate(['/publicaciones']);//Con esto ya no puedo acceder al loguin
     }
     
@@ -40,6 +40,8 @@ export class LoginComponent implements OnInit {
       startWith(''),
       map(value => this._filter(value)),
     );
+
+    this.api.recargarPagina.emit(true);
   }
 
   private _filter(value: string): string[] {
@@ -96,18 +98,20 @@ export class LoginComponent implements OnInit {
     if (this.formularioLogin.invalid) {
       return;
     }
-    console.log(this.formularioLogin.value);
+    //console.log(this.formularioLogin.value.password);
     this.api.BuscarUsuario(
       this.formularioLogin.value.correo,
       this.formularioLogin.value.password).subscribe(resp => {
         console.log(resp);
         this.entrar();
-        this.load(this.formularioLogin.value.correo, this.formularioLogin.value.password);
+        this.load(resp);
       });
   }
 
-  load(usu:any, contraseña:any){
-    this.usu = localStorage.getItem(usu);
-    this.cont = localStorage.getItem(contraseña);
+  load(usu:any){
+    const usuario:any = usu;
+    usuario.contraseña = null;
+    localStorage.setItem('usuario',JSON.stringify(usuario));
+
   }
 }

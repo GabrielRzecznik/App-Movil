@@ -1,0 +1,33 @@
+.fondo{
+    width: 100%;
+    height: 100%;
+    background-image: url("https://image.freepik.com/foto-gratis/joven-conduciendo-su-automovil-noche_1303-17089.jpg");
+    background-repeat: no-repeat;
+    background-position-x:center;
+    background-position-y:center;
+}
+
+.colorTexto{
+    color: white;
+}
+
+.imagen{
+    width: 150px;
+    height: 150px;
+}
+
+.divs{
+    text-align: center;
+}
+
+.margenSuperior{
+    margin-top: 5%;
+}
+
+.mayuscula{
+    font-weight: bold;
+}
+
+.sub{
+    text-decoration: underline;
+}

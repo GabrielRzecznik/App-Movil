@@ -11,6 +11,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { PublicacionesComponent } from './componentes/publicaciones/publicaciones.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ErrorRutaComponent } from './componentes/error-ruta/error-ruta.component';
+import { NavegadorComponent } from './componentes/navegador/navegador.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ErrorRutaComponent } from './componentes/error-ruta/error-ruta.componen
     LoginComponent,
     RegistroComponent,
     PublicacionesComponent,
-    ErrorRutaComponent
+    ErrorRutaComponent,
+    NavegadorComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

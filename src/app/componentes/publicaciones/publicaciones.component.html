@@ -1,110 +1,42 @@
-<!--NAVEGADOR-->
-<mat-toolbar color="primary">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="espacio">Rz Automoviles</span>
-  <div class="derecha">
-    <button *ngIf="!publicar" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)=subir()>
-      <mat-icon>add</mat-icon>
-    </button>
-    <button *ngIf="publicar" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)=noSubir()>
-      <mat-icon>add_box</mat-icon>
-    </button>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span>Mi perfil</span>
-      </button>
-      <!--Modo Oscuro-->
-      <button *ngIf="modoOscuro" mat-menu-item (click)=modos()>
-        <mat-icon>brightness_medium</mat-icon>
-        <span>{{modo}}</span>
-      </button>
-      <!--Modo Claro-->
-      <button *ngIf="!modoOscuro" mat-menu-item (click)=modos()>
-        <mat-icon>brightness_medium</mat-icon>
-        <span>{{modo}}</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Cerrar sessión</span>
-      </button>
-    </mat-menu>
-  </div>
-</mat-toolbar>
-
-<!--CREAR NUEVA PUBLICACIÓN-->
-<mat-accordion *ngIf="publicar">
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <span class="titulo">Nueva publicación</span>
-    </mat-expansion-panel-header>
-
-<form [formGroup]="formularioAutomovil" (ngSubmit)="CrearAutomovil()">
-  <!--Patente-->
-  <mat-form-field class="example-full-width largo" appearance="outline">
-    <mat-label>Patente</mat-label>
-    <input type="patente" matInput placeholder="AA 000 AA">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Ingrese una patente valida
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <!--Marca-->
-  <mat-form-field class="example-full-width largo" appearance="outline">
-    <mat-label>Marca</mat-label>
-    <input type="patente" matInput placeholder="">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-</form>
-
-
-
-
-
-      
-  </mat-expansion-panel>
-</mat-accordion>
-
-
-
-<!--PUBLICACIÓNES-->
-  <mat-card *ngFor="let automovil of automovilesPublicados" class="example-card tarjeta">
-    <button class="derecha" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image imagen responsive"></div>
-      <mat-card-title>{{automovil.marca}} {{automovil.modelo}}</mat-card-title>
-      <mat-card-subtitle>{{automovil.propietario}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://www.agkautomotores.com.ar/wp-content/uploads/2021/05/LANZAMIENTO-FORD-MUSTANG-MACH1.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-      <mat-chip-list aria-label="Fish selection">
-        <mat-chip>Patente | {{automovil.patente}}</mat-chip>
-        <mat-chip>Version | {{automovil.version}}</mat-chip>
-        <mat-chip>Color | {{automovil.color}}</mat-chip>
-        <mat-chip>Estado | {{automovil.estado}}</mat-chip>
-        <mat-chip>{{automovil.cambio}}</mat-chip>
-        <mat-chip>{{automovil.combustible}}</mat-chip>
-        <mat-chip>{{automovil.anio}}</mat-chip>
-        <mat-chip color="primary" selected>{{automovil.kilometraje}} Km</mat-chip>
-        <mat-chip color="primary" selected>${{automovil.valor}}</mat-chip>
-      </mat-chip-list>
-    </mat-card-content>
-  </mat-card>  
-
-
-
-
+<div class="row">
+  <div class="col-lg-4" *ngFor="let automovil of automovilesPublicados">
+    
+    <!--PUBLICACIÓNES-->
+      <mat-card  class="example-card tarjeta">
+        <button class="derecha" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item (click)="EliminarAutomovil(automovil.patente)">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+          </mat-menu>
+        </button>
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image imagen responsive"></div>
+          <mat-card-title>{{automovil.marca}} {{automovil.modelo}}</mat-card-title>
+          <mat-card-subtitle>{{automovil.propietario}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="https://www.agkautomotores.com.ar/wp-content/uploads/2021/05/LANZAMIENTO-FORD-MUSTANG-MACH1.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip>Patente | {{automovil.patente}}</mat-chip>
+            <mat-chip>Version | {{automovil.version}}</mat-chip>
+            <mat-chip>Color | {{automovil.color}}</mat-chip>
+            <mat-chip>Estado | {{automovil.estado}}</mat-chip>
+            <mat-chip>{{automovil.cambio}}</mat-chip>
+            <mat-chip>{{automovil.combustible}}</mat-chip>
+            <mat-chip>{{automovil.anio}}</mat-chip>
+            <mat-chip color="primary" selected>{{automovil.kilometraje}} Km</mat-chip>
+            <mat-chip color="primary" selected>${{automovil.valor}}</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>  
+    
+  
+  </div>  
+</div>  

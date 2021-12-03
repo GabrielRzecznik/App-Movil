@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#333333" fill-opacity="1" d="M0,128L60,117.3C120,107,240,85,360,112C480,139,600,213,720,234.7C840,256,960,224,1080,202.7C1200,181,1320,171,1380,165.3L1440,160L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
+</svg>
+<div class="container delante">
+    <div class="row">
+        <div class="col-12 centrado">
+            <span class="modificar">
+                <span mat-button (click)="editarPerfil()" class="transparencia"><mat-icon class="editar">edit</mat-icon></span>
+                <img src="https://soymotor.com/sites/default/files/imagenes/article/bugatti-atlantic-concept-portada.jpg" alt="No se encontro la foto de perfil" class="fotoPerfil">
+            </span>
+        </div>
+        <div class="col-12 centrado">
+            <h3 class="">{{usuario.nombre}} {{usuario.apellido}}</h3>
+            <h6 class="">{{usuario.correo}}</h6>
+        </div>
+    </div>
+    
+</div>
+
+

@@ -1,0 +1,46 @@
+.centrado{
+    text-align: center;
+}
+
+.editar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    color: white;
+}
+
+.fotoPerfil{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin: 25px;
+}
+
+.transparencia:hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.404);
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+}
+
+.full{
+    width: 100%;
+    text-align: center;
+}
+
+.delante{
+    top: 15%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}

@@ -1,0 +1,133 @@
+<!--NAVEGADOR-->
+<mat-toolbar color="#0099ff">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="espacio">Rz Automoviles</span>
+    <div class="derecha">
+      <button *ngIf="!publicar" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)=subir()>
+        <mat-icon>add</mat-icon>
+      </button>
+      <button *ngIf="publicar" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)=noSubir()>
+        <mat-icon>add_box</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="perfil()">
+          <mat-icon>person</mat-icon>
+          <span>
+            <span>Perfil</span>
+          </span>
+        </button>
+        <!--Modo Oscuro-->
+        <button *ngIf="modoOscuro" mat-menu-item (click)=modos()>
+          <mat-icon>brightness_medium</mat-icon>
+          <span>{{modo}}</span>
+        </button>
+        <!--Modo Claro-->
+        <button *ngIf="!modoOscuro" mat-menu-item (click)=modos()>
+          <mat-icon>brightness_medium</mat-icon>
+          <span>{{modo}}</span>
+        </button>
+        <button mat-menu-item (click)="salir()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar sessión</span>
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+
+  <!--CREAR NUEVA PUBLICACIÓN-->
+  <mat-accordion *ngIf="publicar">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <span class="titulo">Nueva publicación</span>
+      </mat-expansion-panel-header>
+
+      <form [formGroup]="formularioAutomovil" (ngSubmit)="CrearAutomovil()">
+        <!--Patente-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Patente</mat-label>
+          <input matInput placeholder="AA 000 AA" formControlName="patente" name="patente" id="patente" required>
+          <mat-error *ngIf="patente.invalid">{{getErrorMessagePatente()}}</mat-error>
+        </mat-form-field>
+        <!--Marca-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Marca</mat-label>
+          <input matInput placeholder="" formControlName="marca" name="marca" id="marca" required>
+          <mat-error *ngIf="marca.invalid">{{getErrorMessageMarca()}}</mat-error>
+        </mat-form-field>
+        <!--Modelo-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Modelo</mat-label>
+          <input matInput placeholder="" formControlName="modelo" name="modelo" id="modelo" required>
+          <mat-error *ngIf="patente.invalid">{{getErrorMessageModelo()}}</mat-error>
+        </mat-form-field>
+        <!--Versión-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Versión</mat-label>
+          <input matInput placeholder="Basic" formControlName="version" name="version" id="version" required>
+          <mat-error *ngIf="version.invalid">{{getErrorMessageVersion()}}</mat-error>
+        </mat-form-field>
+        <!--Color-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Color</mat-label>
+          <input matInput placeholder="Gris topo" formControlName="color" name="color" id="color" required>
+          <mat-error *ngIf="color.invalid">{{getErrorMessageColor()}}</mat-error>
+        </mat-form-field>
+        <!--Estado-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="Bueno" formControlName="estado" name="estado" id="estado" required>
+          <mat-error *ngIf="estado.invalid">{{getErrorMessageEstado()}}</mat-error>
+        </mat-form-field>
+        <!--Caja-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Caja</mat-label>
+          <mat-select formControlName="cambio" required>
+            <mat-option>--</mat-option>
+            <mat-option value="Manual">Manual</mat-option>
+            <mat-option value="Automatico">Automatico</mat-option>
+          </mat-select>
+          <mat-error *ngIf="cambio.hasError('required')">Ingrese un tipo de caja</mat-error>
+          <mat-hint>{{cambio.value?.sound}}</mat-hint>
+        </mat-form-field>
+        <!--Combustible-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Combustible</mat-label>
+          <mat-select formControlName="combustible" required>
+            <mat-option>--</mat-option>
+            <mat-option value="Gas">Gas</mat-option>
+            <mat-option value="Disel">Disel</mat-option>
+            <mat-option value="Nafta">Nafta</mat-option>
+            <mat-option value="Hibrido">Hibrido</mat-option>
+            <mat-option value="Electrico">Electrico</mat-option>
+          </mat-select>
+          <mat-error *ngIf="combustible.hasError('required')">Ingrese un tipo de combustible</mat-error>
+          <mat-hint>{{combustible.value?.sound}}</mat-hint>
+        </mat-form-field>
+        <!--Valor-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Valor</mat-label>
+          <input matInput placeholder="" formControlName="valor" name="valor" id="valor" required>
+          <mat-error *ngIf="valor.invalid">{{getErrorMessageValor()}}</mat-error>
+        </mat-form-field>
+        <!--Kilometraje-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Kilometraje</mat-label>
+          <input matInput placeholder="" formControlName="kilometraje" name="kilometraje" id="kilometraje" required>
+          <mat-error *ngIf="kilometraje.invalid">{{getErrorMessageKilometraje()}}</mat-error>
+        </mat-form-field>
+        <!--Año-->
+        <mat-form-field class="largo" appearance="outline">
+          <mat-label>Año</mat-label>
+          <input matInput placeholder="" formControlName="anio" name="anio" id="anio" required>
+          <mat-error *ngIf="anio.invalid">{{getErrorMessageAnio()}}</mat-error>
+        </mat-form-field>
+        <!--Boton Publicar -->
+        <button mat-raised-button type="submit" name="publicar" id="publicar" [disabled]="formularioAutomovil.invalid">Publicar</button>
+      </form>
+    </mat-expansion-panel>
+</mat-accordion>
